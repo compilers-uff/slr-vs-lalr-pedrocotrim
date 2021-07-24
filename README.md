@@ -4,6 +4,9 @@ Trabalho da disciplina Compiladores 2021.1
 
 Data de entrega 23/07/21
 
+Nome: Pedro Augusto Cardoso Cotrim Moreira
+Matrícula: 216031097
+
 ## Introdução 
 
 A gramática 
