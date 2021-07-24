@@ -1,0 +1,127 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> s
+Rule 1     s -> l EQ r
+Rule 2     s -> r
+Rule 3     l -> TIMES r
+Rule 4     l -> ID
+Rule 5     r -> l
+
+Terminals, with rules where they appear
+
+EQ                   : 1
+ID                   : 4
+TIMES                : 3
+error                : 
+
+Nonterminals, with rules where they appear
+
+l                    : 1 5
+r                    : 1 2 3
+s                    : 0
+
+Parsing method: SLR
+
+state 0
+
+    (0) S' -> . s
+    (1) s -> . l EQ r
+    (2) s -> . r
+    (3) l -> . TIMES r
+    (4) l -> . ID
+    (5) r -> . l
+
+    TIMES           shift and go to state 4
+    ID              shift and go to state 5
+
+    s                              shift and go to state 1
+    l                              shift and go to state 2
+    r                              shift and go to state 3
+
+state 1
+
+    (0) S' -> s .
+
+
+
+state 2
+
+    (1) s -> l . EQ r
+    (5) r -> l .
+
+  ! shift/reduce conflict for EQ resolved as shift
+    EQ              shift and go to state 6
+    $end            reduce using rule 5 (r -> l .)
+
+  ! EQ              [ reduce using rule 5 (r -> l .) ]
+
+
+state 3
+
+    (2) s -> r .
+
+    $end            reduce using rule 2 (s -> r .)
+
+
+state 4
+
+    (3) l -> TIMES . r
+    (5) r -> . l
+    (3) l -> . TIMES r
+    (4) l -> . ID
+
+    TIMES           shift and go to state 4
+    ID              shift and go to state 5
+
+    r                              shift and go to state 7
+    l                              shift and go to state 8
+
+state 5
+
+    (4) l -> ID .
+
+    EQ              reduce using rule 4 (l -> ID .)
+    $end            reduce using rule 4 (l -> ID .)
+
+
+state 6
+
+    (1) s -> l EQ . r
+    (5) r -> . l
+    (3) l -> . TIMES r
+    (4) l -> . ID
+
+    TIMES           shift and go to state 4
+    ID              shift and go to state 5
+
+    l                              shift and go to state 8
+    r                              shift and go to state 9
+
+state 7
+
+    (3) l -> TIMES r .
+
+    EQ              reduce using rule 3 (l -> TIMES r .)
+    $end            reduce using rule 3 (l -> TIMES r .)
+
+
+state 8
+
+    (5) r -> l .
+
+    $end            reduce using rule 5 (r -> l .)
+    EQ              reduce using rule 5 (r -> l .)
+
+
+state 9
+
+    (1) s -> l EQ r .
+
+    $end            reduce using rule 1 (s -> l EQ r .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for EQ in state 2 resolved as shift
